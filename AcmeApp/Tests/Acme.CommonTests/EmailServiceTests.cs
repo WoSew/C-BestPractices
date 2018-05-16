@@ -19,5 +19,5 @@ namespace Acme.Common.Tests
             // Assert
             Assert.AreEqual(expected, actual);
         }
-    }
+    } 
 }
