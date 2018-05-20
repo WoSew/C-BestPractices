@@ -24,9 +24,7 @@ namespace Acme.Biz
         {
             var emailService = new EmailService();
             var subject = ("Hello " + this.CompanyName).Trim();
-            var confirmation = emailService.SendMessage(subject,
-                                                        message, 
-                                                        this.Email);
+            var confirmation = emailService.SendMessage(subject,message, this.Email);
             return confirmation;
         }
     }

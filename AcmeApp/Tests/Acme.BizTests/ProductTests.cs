@@ -21,6 +21,9 @@ namespace Acme.Biz.Tests
             currentProduct.ProductId = 1;
             currentProduct.Description = "15-inch steel blade hand saw";
 
+            var companyName = currentProduct?.ProductVendor?.CompanyName;
+            companyName = "ABC Corp";
+
             var expected = "Hello Saw (1): 15-inch steel blade hand saw";
 
             //Act
@@ -29,7 +32,7 @@ namespace Acme.Biz.Tests
 
             //Assert
             Assert.AreEqual(expected, actal);
-        }
+        } 
 
         [TestMethod()]
         public void SayHello_ParameterizedConstructor()
@@ -40,11 +43,47 @@ namespace Acme.Biz.Tests
             var expected = "Hello Saw (1): 15-inch steel blade hand saw";
 
             //Act
-            var actal = currentProduct.SayHello(); 
+            var actual = currentProduct.SayHello(); 
 
 
             //Assert
-            Assert.AreEqual(expected, actal);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SayHello_ObjectInitializer()
+        {
+            //Arrange
+            var currentProduct = new Product
+            {
+                ProductId = 1,
+                ProductName = "Saw",
+                Description = "15-inch steel blade hand saw"
+            };
+
+            var excepted = "Hello Saw (1): 15-inch steel blade hand saw";
+            
+            //Act
+            var actual = currentProduct.SayHello();
+
+            //Assert
+            Assert.AreEqual(excepted,actual);
+        }
+
+        [TestMethod]
+        public void Product_Null()
+        {
+            //Arrange
+            Product currentProduct = null;
+            var companyName = currentProduct?.ProductVendor?.CompanyName;
+
+            string excepted = null;
+
+            //Act
+            var actual = companyName;
+
+            //Assert
+            Assert.AreEqual(excepted, actual);
         }
     }
 }
