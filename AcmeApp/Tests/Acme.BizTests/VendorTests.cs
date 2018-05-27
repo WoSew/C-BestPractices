@@ -70,6 +70,22 @@ namespace Acme.Biz.Tests
         }
 
         [TestMethod]
+        public void PlaceOrder_3Parameters()
+        {
+            //arrange
+            var vendor = new Vendor();
+            var product = new Product(1, "Book", "LOTR");
+            var expected = new OperationResult(true, "Order from Acme, Inc\r\nProduct: Book\r\nQuantity: 3"+"\r\nDeliver By: 30.05.2018");
+
+            //act
+            var actual = vendor.PlaceOrder(product, 3, new DateTimeOffset(2018,5,30, 0,0,0,new TimeSpan(-7,0,0)));
+
+            //assert
+            Assert.AreEqual(expected.Success, actual.Success);
+            Assert.AreEqual(expected.Message, actual.Message);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PlaceOrder_NullProduct_Exception()
         {
