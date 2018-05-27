@@ -20,10 +20,8 @@ namespace Acme.Biz.Tests
             currentProduct.ProductName = "Saw";
             currentProduct.ProductId = 1;
             currentProduct.Description = "15-inch steel blade hand saw";
-
             var companyName = currentProduct?.ProductVendor?.CompanyName;
             companyName = "ABC Corp";
-
             var expected = "Hello Saw (1): 15-inch steel blade hand saw" + " Available on: ";
 
             //Act
@@ -32,18 +30,18 @@ namespace Acme.Biz.Tests
 
             //Assert
             Assert.AreEqual(expected, actal);
-        } 
+        }
 
         [TestMethod()]
         public void SayHello_ParameterizedConstructor()
         {
             //Arrange
-            var currentProduct = new Product(1,"Saw", "15-inch steel blade hand saw");
-            
+            var currentProduct = new Product(1, "Saw", "15-inch steel blade hand saw");
+
             var expected = "Hello Saw (1): 15-inch steel blade hand saw" + " Available on: ";
 
             //Act
-            var actual = currentProduct.SayHello(); 
+            var actual = currentProduct.SayHello();
 
 
             //Assert
@@ -67,7 +65,7 @@ namespace Acme.Biz.Tests
             var actual = currentProduct.SayHello();
 
             //Assert
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -109,7 +107,7 @@ namespace Acme.Biz.Tests
 
             //Act
             var actual = currentProduct.MinimumPrice;
-            
+
             //Assert
             Assert.AreEqual(expected, actual);
         }
@@ -140,7 +138,7 @@ namespace Acme.Biz.Tests
             var actual = currentProduct.ProductName;
 
             //assert
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -158,8 +156,8 @@ namespace Acme.Biz.Tests
             var actualMessage = currentProduct.ValidationMassage;
 
             //Assert
-            Assert.AreEqual(expected,actual);
-            Assert.AreEqual(expectedMessage,actualMessage);
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
 
         [TestMethod]
@@ -211,7 +209,7 @@ namespace Acme.Biz.Tests
             var actual = currentProduct.Category;
 
             //assert
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
 
@@ -270,6 +268,22 @@ namespace Acme.Biz.Tests
             var actual = currentProduct.ProductCode;
 
             //assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod()]
+        public void CalculateSuggestedPriceTest()
+        {
+            //Arrange
+            var currentProduct = new Product(1, "Saw", "Description");
+            currentProduct.Cost = 50m;
+            var expected = 55m;
+
+            //Act
+            var actual = currentProduct.CalculateSuggestedPrice(10);
+
+            //Assert
             Assert.AreEqual(expected,actual);
 
         }
